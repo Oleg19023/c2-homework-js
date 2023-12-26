@@ -41,8 +41,9 @@ function calculateLoan() {
 
     // Корректировка
     if (i === loanTermMonths) {
-        monthlyPayment = initialBalance + interestPayment;
-        principalPayment = initialBalance;
+    monthlyPayment = initialBalance + interestPayment;
+    principalPayment = initialBalance;
+    totalPayment = totalPrincipalPayment + totalInterestPayment;
     }
 
     const row = document.createElement('tr');
