@@ -57,5 +57,5 @@ function calculateLoan() {
     table.appendChild(totalRow);
 }
 
-/*     ʕ ᵔᴥᵔ ʔ - Этот мишка растроится если мой код скопируют     */
+/*     ʕ ᵔᴥᵔ ʔ      */
 
