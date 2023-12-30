@@ -41,6 +41,7 @@ function calculateLoan() {
             principalPayment = initialBalance;
         }
 
+        // Рассчет выплат в месяц
         totalPrincipalPayment += principalPayment;
         totalInterestPayment += interestPayment;
         totalPayment += monthlyPayment;
