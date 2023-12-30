@@ -1,4 +1,3 @@
-// Аннуитетный калькуль
 function calculateLoan() {
     // Ввод
     const loanTermMonths = parseFloat(document.getElementById('loanTermMonths').value);
@@ -24,38 +23,35 @@ function calculateLoan() {
 
     // Расчет-вывод погаш. кредита
     for (let i = 1; i <= loanTermMonths; i++) {
-    let initialBalance = balance;
-    let interestPayment = balance * monthlyInterestRate;
-    let principalPayment = monthlyPayment - interestPayment;
-    balance -= principalPayment;
-    totalPayment += monthlyPayment;
-    totalPrincipalPayment += principalPayment;
-    totalInterestPayment += interestPayment;
+        let initialBalance = balance;
+        let interestPayment = balance * monthlyInterestRate;
+        let principalPayment = monthlyPayment - interestPayment;
+        balance -= principalPayment;
 
-    // Проверка на -баланс
-    if (balance < 0) {
-        principalPayment += balance;
-        monthlyPayment = principalPayment + interestPayment;
-        balance = 0;
+        // Проверка на -баланс
+        if (balance < 0) {
+            principalPayment += balance;
+            monthlyPayment = principalPayment + interestPayment;
+            balance = 0;
+        }
+
+        // Корректировка
+        if (i === loanTermMonths) {
+            monthlyPayment = initialBalance + interestPayment;
+            principalPayment = initialBalance;
+        }
+
+        totalPrincipalPayment += principalPayment;
+        totalInterestPayment += interestPayment;
+        totalPayment += monthlyPayment;
+
+        const row = document.createElement('tr');
+        row.innerHTML = '<td>' + i + '</td><td>' + initialBalance.toFixed(2) + '</td><td>' + principalPayment.toFixed(2) + '</td><td>' + interestPayment.toFixed(2) + '</td><td>' + monthlyPayment.toFixed(2) + '</td><td>' + balance.toFixed(2) + '</td>';
+        table.appendChild(row);
     }
-
-    // Корректировка
-    if (i === loanTermMonths) {
-    monthlyPayment = initialBalance + interestPayment;
-    principalPayment = initialBalance;
-    totalPayment = totalPrincipalPayment + totalInterestPayment;
-    }
-
-    const row = document.createElement('tr');
-    row.innerHTML = '<td>' + i + '</td><td>' + initialBalance.toFixed(2) + '</td><td>' + principalPayment.toFixed(2) + '</td><td>' + interestPayment.toFixed(2) + '</td><td>' + monthlyPayment.toFixed(2) + '</td><td>' + balance.toFixed(2) + '</td>';
-    table.appendChild(row);
-}
 
     // Итого
     const totalRow = document.createElement('tr');
     totalRow.innerHTML = '<td>Итого</td><td></td><td>' + totalPrincipalPayment.toFixed(2) + '</td><td>' + totalInterestPayment.toFixed(2) + '</td><td>' + totalPayment.toFixed(2) + '</td><td></td>';
     table.appendChild(totalRow);
 }
-
-/*     ʕ ᵔᴥᵔ ʔ      */
-
