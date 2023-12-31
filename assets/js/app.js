@@ -44,7 +44,8 @@ function calculateLoan() {
         // Рассчет выплат в месяц
         totalPrincipalPayment += principalPayment;
         totalInterestPayment += interestPayment;
-        totalPayment += monthlyPayment;
+        monthlyPayment = Number(monthlyPayment.toFixed(2));
+        totalPayment += +monthlyPayment.toFixed(2);
 
         const row = document.createElement('tr');
         row.innerHTML = '<td>' + i + '</td><td>' + initialBalance.toFixed(2) + '</td><td>' + principalPayment.toFixed(2) + '</td><td>' + interestPayment.toFixed(2) + '</td><td>' + monthlyPayment.toFixed(2) + '</td><td>' + balance.toFixed(2) + '</td>';
